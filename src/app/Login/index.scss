@@ -1,0 +1,85 @@
+.acgLoginPage {
+    background-color: #1d1e2c;
+    background-size: cover;
+    min-height: 100vh;
+    .loginForm {
+        position: absolute;
+        top: 25%;
+        left: 50%;
+        transform: translate(-50%, -22%);
+    }
+    .loginLogo {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 50px;
+    }
+    .loginPaper {
+        background-color: #2b2d42;
+        border-radius: 0px;
+        padding: 40px;
+    }
+    .loginFormHeader {
+        text-align: center;
+        color: #b1c2df;
+    }
+    .welcomeText {
+        font-weight: 600;
+        font-size: 20px;
+        margin-bottom: 12px;
+    }
+    .loginText {
+        font-weight: 500;
+        font-size: 12px;
+        margin-bottom: 50px;
+    }
+    .forgotPwd {
+        margin-top: 5px;
+        text-align: end;
+        color: #5d97f6;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+    .textBoxDiv {
+        margin-top: 9px;
+        margin-bottom: 15px;
+        width: 400px;
+    }
+    .buttonDiv {
+        margin-top: 30px;
+    }
+}
+@media (max-width: 950px) {
+    .acgLoginPage {
+        background-position: center;
+    }
+}
+
+@media (min-width: 360px) and (max-width: 420px) {
+    .acgLoginPage {
+        .loginPaper {
+            padding: 25px;
+        }
+        .textBoxDiv {
+            width: 265px;
+        }
+    }
+}
+@media (max-width: 320px) {
+    .acgLoginPage {
+        .loginPaper {
+            padding: 25px;
+        }
+        .textBoxDiv {
+            width: 180px;
+        }
+    }
+}
+
+@media (min-width: 1024px) {
+    .acgLoginPage {
+        .loginText {
+            margin-bottom: 10px;
+        }
+    }
+}
