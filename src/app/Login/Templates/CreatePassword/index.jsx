@@ -121,7 +121,7 @@ const CreatePassword = (props) => {
               <Button
                 formInput={"buttonDiv"}
                 fullWidth={true}
-                name="Change Password"
+                name={data?.isForgotPwdPage ? "Confirm" : "Change Password"}
                 type="submit"
                 variant="contained"
               />

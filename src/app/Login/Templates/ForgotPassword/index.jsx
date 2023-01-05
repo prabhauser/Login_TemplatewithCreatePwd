@@ -1,43 +1,40 @@
-import { Paper } from "@material-ui/core";
+import { Paper, Grid } from "@material-ui/core";
 import TextInput from "../../TextInput/index";
 import Label from "../../Label/index";
 import Button from "../../Button/index";
-import { Typography, IconButton } from "@material-ui/core";
-import VisibilityIcon from "../../../assets/visibilityIcon.svg";
-import VisibilityOffIcon from "../../../assets/visibilityOffIcon.svg";
+import { Typography } from "@material-ui/core";
 import { Formik, Form } from "formik";
 import { useState, useEffect } from "react";
-import { LOGIN_YUPSCHEMA } from "./schema";
+import { FORGOTPWD_YUPSCHEMA } from "./schema";
 import * as Yup from "yup";
 import { useHistory } from "react-router-dom";
 
 const SimpleLoginTemplate = (props) => {
   const { data } = props;
   const history = useHistory();
-  const [showPassword, setShowPassword] = useState(false);
   const [validationSchema, setValidationSchema] = useState({});
   const [disableLogin, setDisableLogin] = useState(true);
-  const handleClick = () => {
-    setShowPassword((prev) => !prev);
-  };
   const [initialValues] = useState({
     emailId: "",
-    password: "",
+    answer: "",
   });
 
   useEffect(() => {
-    setValidationSchema(Yup.object().shape(LOGIN_YUPSCHEMA));
+    setValidationSchema(Yup.object().shape(FORGOTPWD_YUPSCHEMA));
   }, []);
 
   const handleSubmit = async (values) => {
-    //api call to check if its first time login
-    data?.setTemplateType("setSecurityQn");
+    //api call to check if inputs are correct
+    //data?.setTemplateType("createPassword");
+    data?.setTemplateType("lockAccount");
   };
   return (
     <Paper elevation={2} className="loginPaper">
       <div className="loginFormHeader">
-        <Typography className="welcomeText">Welcome !</Typography>
-        <Typography className="loginText">Enter your login details</Typography>
+        <Typography className="welcomeText">Forgot Password</Typography>
+        <Typography className="loginText">
+          Enter below details to create new password
+        </Typography>
       </div>
       <Formik
         initialValues={initialValues}
@@ -73,52 +70,49 @@ const SimpleLoginTemplate = (props) => {
                   errors.emailId && touched.emailId ? errors.emailId : ""
                 }
               />
-              <Label className={"password-class"} label={"Password"} />
+              <Label className={"password-class"} label={"Question"} />
               <TextInput
                 variant="outlined"
                 maxLength={50}
                 fullWidth={true}
-                type={showPassword ? "text" : "password"}
-                name="password"
+                type={"text"}
+                name="answer"
                 formInput={"textBoxDiv"}
                 onChange={(e) => {
                   setDisableLogin(false);
                   handleChange(e);
                 }}
-                placeholder={"Enter Password"}
-                endAdornment={
-                  <IconButton
-                    tabIndex="-1"
-                    className="password-eye"
-                    onClick={handleClick}
-                  >
-                    {showPassword ? (
-                      <img src={VisibilityIcon} alt="logo" />
-                    ) : (
-                      <img src={VisibilityOffIcon} alt="logo" />
-                    )}
-                  </IconButton>
-                }
-                value={values.password}
+                placeholder={"Enter answer"}
+                value={values.answer}
                 onBlur={handleBlur}
                 helperText={
-                  errors.password && touched.password ? errors.password : ""
+                  errors.answer && touched.answer ? errors.answer : ""
                 }
               />
-              <p
-                className="forgotPwd"
-                onClick={() => history.push("/forgotPassword")}
-              >
-                Forgot Password?
-              </p>
-              <Button
-                formInput={"buttonDiv"}
-                fullWidth={true}
-                name="Login"
-                disabled={disableLogin || !isValid}
-                type="submit"
-                variant="contained"
-              />
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6} md={6} xl={6} lg={6}>
+                  <Button
+                    formInput={"buttonDiv"}
+                    fullWidth={true}
+                    name="Cancel"
+                    handleClick={() => history.push("/")}
+                    secondary={true}
+                    //   disabled={disableLogin || !isValid}
+                    type="button"
+                    variant="contained"
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6} md={6} xl={6} lg={6}>
+                  <Button
+                    formInput={"buttonDiv"}
+                    fullWidth={true}
+                    name="Proceed"
+                    disabled={disableLogin || !isValid}
+                    type="submit"
+                    variant="contained"
+                  />
+                </Grid>
+              </Grid>
             </Form>
           );
         }}
