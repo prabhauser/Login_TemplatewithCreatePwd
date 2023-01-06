@@ -16,7 +16,9 @@ const LockedAccount = (props) => {
         <img src={FailureIcon} alt="logo" />
       </Box>
       <div className="loginFormHeader">
-        <Typography className="welcomeText">Your account is locked</Typography>
+        <Typography className="welcomeText lockTextDiv">
+          Your account is locked
+        </Typography>
         <Typography className="loginText">
           Please contact admin to retrieve
         </Typography>
