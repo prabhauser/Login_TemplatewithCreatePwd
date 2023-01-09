@@ -1,0 +1,26 @@
+.acgDropdown {
+  font-family: "Montserrat";
+  .paper {
+    width: 100%;
+  }
+  .disabledComponent {
+    opacity: 0.6;
+  }
+  .label {
+    height: 17px;
+    opacity: 0.5;
+    color: #2c333a;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0;
+    margin-bottom: 12px;
+  }
+  .optionStyle {
+    color: #b1c2df;
+    font-size: 14px;
+    letter-spacing: 0;
+    font-weight: 500;
+    line-height: 17px;
+    padding: 12px 0px 3px 14px;
+  }
+}
